@@ -1,6 +1,6 @@
-# PSFree WebKit Exploit & Lapse Kernel Exploit for PS4
+# PSFree WebKit Exploit & Lapse Kernel Exploit v2.04 for PS4
 
-A PSFree & Lapse exploit for PS4 firmware 9.00
+A PSFree & Lapse exploit for PS4 firmware 7.00 to 9.60
 > ⚠️ This repository is for research and educational purposes only.
 
 ## Overview
@@ -13,7 +13,7 @@ This repository is a research-focused fork of [PSFree](https://github.com/kmeps4
 Through these changes, the original modular `.mjs` structure has been refactored into a single-file `.js` implementation designed to execute in a more sequential, `C-like` flow. This approach improves readability, simplifies debugging and ensures consistent execution timing across environments.
 
 <p align="center">
-  <img src="psfree_lapse.png" alt="PSFree" width="486" height="587"/>
+  <img src="psfree_lapse_2.04.png" alt="PSFree" width="537" height="588"/>
 </p>
 
 ---
@@ -39,14 +39,14 @@ Through these changes, the original modular `.mjs` structure has been refactored
 - **Removed debugging logs** — cleaned up and commented out debugging logs to reduce side effects and improve runtime consistency.
 - **Embedded** `.elf/.bin` **assets as hex arrays inside JS** — binary resources converted to in-file hex arrays to avoid read/load errors in constrained environments.
 - **Replaced** `XMLHttpRequest()` **with** `fetch()`**/file reads** — modernized file-loading code for better compatibility and promise-based control flow.
-
-### Reference bundle and change-tracking
-
-This repository includes a minimally-modified reference bundle `bundle_reference.js` for diff-based review; it is provided for comparison only and is **not used** by the code.
+- **Removed all** `localStorage` **and** `sessionStorage` **usage** — Storage APIs were removed to avoid cross-origin restrictions, quota issues, and inconsistent behavior in sandboxed WebKit environments.
+- **Implemented console firmware detection** — Added logic to automatically detect the running PS4 firmware version, enabling conditional execution paths and improving overall compatibility across different system revisions.
+- **Merged various tweaks from Al-Azif’s source** — Incorporated selected stability, compatibility, and workflow improvements from Al-Azif’s implementation to enhance overall reliability and reduce edge-case failures.
+- **Added multi-firmware support (7.00 -> 9.60) from Al-Azif’s source** — Full support implemented for firmware versions 7.00 through 9.60, including: Kernel patch + AIO fix .bin files
 
 ## ToDo List
 
-- Find an alternative (semi-modular) way to add firmware support
+- Add 6.XX support
 
 ## Notes:
 
@@ -66,7 +66,12 @@ Please review the [LICENSE](LICENSE) before redistributing or modifying the code
 
 Special thanks to:
 
-* [kmeps4](https://github.com/kmeps4) and [Al-Azif](https://github.com/Al-Azif) for their PSFree projects which inspired several improvements in this repo.
+* **ABC**, the designer of the PSFree and Lapse core software, whose foundational work made many of these improvements possible.
+* [kmeps4](https://github.com/kmeps4) and [Al-Azif](https://github.com/Al-Azif) for their PSFree projects which inspired me a lot in this repo.
+* **ps4dev team** for their continuous support and invaluable contributions to the PS4 research ecosystem. This project stands on the hard work of all the developers behind it — none of this would be possible without their efforts.
+* everyone who tested the updates across various firmware versions and supported the project with their valuable feedback.
+
+Extra thanks to **Dr.Yenyen** for thoroughly testing every supported firmware version and dedicating an incredible amount of time and effort to ensure stability and reliability.
 
 ## Contact
 
